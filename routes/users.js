@@ -62,8 +62,6 @@ router.post('/', async function(ctx) {
             message:"密码太短",
             data:{}
         }
-        ctx.content = "111"
-        ctx.status =204
         console.log('密码太短')
         return false;
     }
