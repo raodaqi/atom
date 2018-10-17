@@ -54,7 +54,7 @@ router.post('/', async function(ctx) {
         return false;
     }
 
-    if(password.leangth  < 6){
+    if(password.length  < 6){
         // ctx.status = 1002
         // ctx.message = "密码太短"
         ctx.body = {
@@ -62,7 +62,9 @@ router.post('/', async function(ctx) {
             message:"密码太短",
             data:{}
         }
+        ctx.content = "111"
         ctx.status =204
+        console.log('密码太短')
         return false;
     }
 
