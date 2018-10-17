@@ -70,29 +70,29 @@ router.post('/', async function(ctx) {
 
     var query = new AV.Query('_User');
     query.equalTo("username",phone);
-    var user = await query.first();
-    console.log(user)
+    var userQuery = await query.first();
+    console.log(userQuery)
 
-    if(user){
+    if(userQuery){
         //存在
         ctx.body = {
             code : "1003",
             message:"用户已存在",
-            data:user
+            data:{}
         }
         return;
     }
 
-    var user = new AV.User();
+    var newUser = new AV.User();
     // 设置用户名
-    user.setUsername(phone);
+    newUser.setUsername(phone);
     // 设置密码
-    user.setPassword(password);
+    newUser.setPassword(password);
 
     var user = {}
 
     try{
-        user = await user.signUp()
+        user = await newUser.signUp()
     }catch(err){
         // console.log(err)
         ctx.body = {
