@@ -1,5 +1,5 @@
-# Node.js Getting started
-在 LeanCloud 云引擎上使用 Express 的 Node.js 实例项目。
+# Koa Getting started
+在 LeanCloud 云引擎上使用 [Koa](http://koajs.com/) 的 Node.js 实例项目。
 
 ## 一键部署
 [![Deploy to LeanEngine](http://ac-32vx10b9.clouddn.com/109bd02ee9f5875a.png)](https://leancloud.cn/1.1/engine/deploy-button)
@@ -9,8 +9,8 @@
 首先确认本机已经安装 [Node.js](http://nodejs.org/) 运行环境和 [LeanCloud 命令行工具](https://leancloud.cn/docs/leanengine_cli.html)，然后执行下列指令：
 
 ```
-$ git clone https://github.com/leancloud/node-js-getting-started.git
-$ cd node-js-getting-started
+$ git clone https://github.com/leancloud/koa-getting-started.git
+$ cd koa-getting-started
 ```
 
 安装依赖：
