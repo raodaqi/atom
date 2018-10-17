@@ -43,22 +43,44 @@ router.post('/', async function(ctx) {
 
 	if (!phoneReg.test(phone)) {
         
-        ctx.status = 204
+        // ctx.status = 204
         // ctx.message = "手机号不正确"
         ctx.body = {
-            error:'手机号不正确'
+            code : "1001",
+            message:"手机号不正确",
+            data:{}
         }
         console.log('手机号不正确')
         return false;
     }
 
     if(password.leangth  < 6){
-        ctx.status = 1002
+        // ctx.status = 1002
         // ctx.message = "密码太短"
         ctx.body = {
-            error:'密码太短'
+            code : "1002",
+            message:"密码太短",
+            data:{}
         }
+        ctx.status =204
         return false;
+    }
+
+    //查询用户
+
+    var query = new AV.Query('_User');
+    query.equalTo("username",phone);
+    var user = await query.first();
+    console.log(user)
+
+    if(user){
+        //存在
+        ctx.body = {
+            code : "1003",
+            message:"用户已存在",
+            data:user
+        }
+        return;
     }
 
     var user = new AV.User();
@@ -67,11 +89,33 @@ router.post('/', async function(ctx) {
     // 设置密码
     user.setPassword(password);
 
-    var user = await user.signUp()
+    var user = {}
 
-    ctx.status = 200
+    try{
+        user = await user.signUp()
+    }catch(err){
+        // console.log(err)
+        ctx.body = {
+            code : "1004",
+            message:"登录失败",
+            data:user
+        }
+
+        return;
+    }
+
+    
+
+    console.log("user")
+    console.log(user)
+
+    // ctx.status = 200
     // ctx.message = "获取成功"
-    ctx.body = user
+    ctx.body = {
+        code : "200",
+        message:"获取成功",
+        data:user
+    }
 });
 
 module.exports = router;
