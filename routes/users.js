@@ -37,16 +37,6 @@ router.post('/', async function(ctx) {
     const phone = ctx.request.body.phone;
     const password = ctx.request.body.password;
 
-    
-
-    ctx.status = 200
-    // ctx.message = "获取成功"
-    ctx.body = {
-        phone : phone,
-    }
-
-    return
-
   //判断手机号是否正确
 
     var phoneReg = /(^1[3|4|5|7|8]\d{9}$)|(^09\d{8}$)/;
